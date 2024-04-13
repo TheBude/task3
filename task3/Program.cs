@@ -1,34 +1,39 @@
-﻿//Tempiratura
-Console.WriteLine("Salom Men tempiraturani o'giruvchi dasturman!");
+﻿//sonlarni tartiblash chatgpt dan foydalanildi
+Console.Write("Iltimos, vergul bilan ajratib sonlarni kiriting: ");
+string input = Console.ReadLine();
+string[] tokens = input.Split(',');
+int[] numbers = new int[tokens.Length];
 
-Console.Write("Timperaturani Selsiyusda kiriting: ");
-string op = Console.ReadLine();
-int temp = Convert.ToInt32(op);
-
-Console.WriteLine($"{temp} °C ni  Fahrenheit yoki Kelvin ga ko'chiraylikmi");
-
-Console.Write(" Fahrenheit ga bo'lsa '1', Kelvin bo'lsa '2' ni kiriting:  ");
-string num = Console.ReadLine();
-
-switch(op)
+for (int i = 0; i < tokens.Length; i++)
 {
-    case "0":
-        Console.WriteLine($" 0 °C selsiy 32 °F Fahrenheit ga teng\n 0 °C selsiy 273.15 K kelvin ga teng");
-        break;
-    default:
-        Console.WriteLine("afc");
-        break;
+    numbers[i] = int.Parse(tokens[i].Trim());
 }
 
-switch(num)
+// Tartiblash
+Array.Sort(numbers);
+
+Console.WriteLine("Tartiblangan qator:");
+Console.WriteLine(string.Join(", ", numbers));
+
+// Teskari tartiblash
+Array.Reverse(numbers);
+Console.WriteLine("Teskari tartib:");
+Console.WriteLine(string.Join(", ", numbers));
+
+// Agar switch operatori kerak bo'lsa, misol uchun quyidagi kabi
+Console.WriteLine("Kerakli operatsiyani tanlang: 1 - Tartiblash, 2 - Teskari tartiblash");
+string choice = Console.ReadLine();
+switch (choice)
 {
-     case "1":
-            Console.WriteLine($"{temp} °C selsiy {temp * 33.8} °F Fahrenheit ga teng");
-            break;
-     case "2":
-            Console.WriteLine($"{temp} °C selsiy {temp * 274.15} K kelvin ga teng");
-            break;
-     default:
-            Console.WriteLine("Bunaqa Operatsiya Yuq");
-            break;
+    case "1":
+        Console.WriteLine("Tartiblangan qator:");
+        Console.WriteLine(string.Join(", ", numbers.OrderBy(x => x)));
+        break;
+    case "2":
+        Console.WriteLine("Teskari tartib:");
+        Console.WriteLine(string.Join(", ", numbers.OrderByDescending(x => x)));
+        break;
+    default:
+        Console.WriteLine("Noto'g'ri tanlov!");
+        break;
 }
