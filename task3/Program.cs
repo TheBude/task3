@@ -1,32 +1,22 @@
-﻿using System;
+﻿//harflarni hisoblavchi
+Console.Write("Matn yoki so'z kiriting: ");
+string text = Console.ReadLine();
 
-class Program
+Dictionary<char, int> count = new Dictionary<char, int>();
+
+foreach (char letter in text)
 {
-    static void Main()
+    if (count.ContainsKey(letter))
     {
-        Console.Write("Matn kiriting: ");
-        string input = Console.ReadLine();
-
-        if (IsPalindrome(input))
-        {
-            Console.WriteLine("Palindrom");
-        }
-        else
-        {
-            Console.WriteLine("Palindrom emas");
-        }
+        count[letter]++;
     }
-
-    static bool IsPalindrome(string text)
+    else
     {
-        text = text.ToLower();
-
-        string reversed = "";
-        for (int i = text.Length - 1; i >= 0; i--)
-        {
-            reversed += text[i];
-        }
-
-        return text == reversed;
+        count[letter] = 1;
     }
+}
+
+foreach(var kvp in count)
+{
+    Console.WriteLine($"'{kvp.Key} : '{kvp.Value}' Marta");
 }
